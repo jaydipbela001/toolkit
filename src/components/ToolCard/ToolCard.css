@@ -1,0 +1,145 @@
+/* ToolCard Styles */
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--border-color);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+  opacity: 1 !important;
+  transform: translateY(0);
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--card-accent, var(--primary-color)), var(--secondary-color));
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+
+.tool-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99,102,241,0.15), transparent 40%);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.tool-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 40px rgba(99, 102, 241, 0.2);
+  border-color: var(--card-accent, var(--primary-color));
+  background: var(--card-hover);
+}
+
+.tool-card:hover::before {
+  transform: scaleX(1);
+}
+
+.tool-card:hover::after {
+  opacity: 1;
+}
+
+.tool-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  transition: transform var(--transition);
+}
+
+.tool-card:hover .tool-card-icon {
+  transform: scale(1.1);
+}
+
+.tool-card-icon span {
+  font-size: 1.75rem;
+}
+
+.tool-card-content {
+  flex: 1;
+}
+
+.tool-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  transition: color var(--transition);
+}
+
+.tool-card:hover .tool-card-title {
+  color: var(--card-accent, var(--primary-color));
+}
+
+.tool-card-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
+}
+
+.tool-card-arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all var(--transition);
+}
+
+.tool-card:hover .tool-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--card-accent, var(--primary-color));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tool-card {
+    padding: 1.25rem;
+  }
+
+  .tool-card-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .tool-card-icon span {
+    font-size: 1.5rem;
+  }
+
+  .tool-card-title {
+    font-size: 1.1rem;
+  }
+
+  .tool-card-description {
+    font-size: 0.85rem;
+  }
+
+  .tool-card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,227 @@
+/* Timezone Converter Styles */
+
+.timezone-card {
+  background: var(--card-color);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 0 auto;
+  border: 2px solid var(--border-color);
+}
+
+.timezone-selectors {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.form-group select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  background: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-glow);
+}
+
+.swap-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.swap-button:hover {
+  transform: rotate(180deg) scale(1.05);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
+}
+
+.swap-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.timezone-result {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2.5rem 2rem;
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 0;
+  border: 2px solid var(--border-color);
+}
+
+.time-display {
+  text-align: center;
+}
+
+.time-display.from-time {
+  border-right: 1px solid var(--border-color);
+  padding-right: 1rem;
+}
+
+.time-display.to-time {
+  border-left: 1px solid var(--border-color);
+  padding-left: 1rem;
+}
+
+.time-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.time-display.to-time .time-value {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.time-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.time-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-arrow svg {
+  width: 28px;
+  height: 28px;
+  color: var(--primary-color);
+}
+
+.offset-badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timezone-selectors {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .swap-button {
+    margin: 0 auto;
+    transform: rotate(90deg);
+  }
+
+  .swap-button:hover {
+    transform: rotate(270deg);
+  }
+
+  .timezone-result {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .time-display.from-time,
+  .time-display.to-time {
+    border: none;
+    padding: 0;
+  }
+
+  .time-display.from-time {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+
+  .time-display.to-time {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+  }
+
+  .time-arrow {
+    flex-direction: row;
+  }
+
+  .time-arrow svg {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .timezone-card {
+    padding: 1.5rem;
+  }
+
+  .time-value {
+    font-size: 1.5rem;
+  }
+
+  .time-label {
+    font-size: 0.7rem;
+  }
+}
