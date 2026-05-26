@@ -36,20 +36,20 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/age-calculator', label: 'Age Calculator' },
-    { path: '/emi-calculator', label: 'EMI Calculator' },
+    { path: '/', label: 'Formatter' },
+    { path: '/age-calculator', label: 'Age' },
+    { path: '/emi-calculator', label: 'EMI' },
     { path: '/timezone-converter', label: 'Timezone' },
     { path: '/password-generator', label: 'Password' },
-    { path: '/json-formatter', label: 'JSON' },
+    { path: '/about', label: 'About' },
   ];
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
         <NavLink to="/" className="navbar-logo" onClick={closeMenu}>
-          <span className="logo-icon">🔧</span>
-          <span className="logo-text">ToolKit</span>
+          <span className="logo-icon">⚡</span>
+          <span className="logo-text">DevToolsHub</span>
         </NavLink>
 
         <div className="navbar-right">

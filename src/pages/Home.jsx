@@ -36,13 +36,6 @@ const Home = () => {
       path: '/password-generator',
       color: 'warning',
     },
-    {
-      title: 'JSON Formatter',
-      description: 'Format, validate, and beautify your JSON data with ease.',
-      icon: '📋',
-      path: '/json-formatter',
-      color: 'purple',
-    },
   ];
 
   useEffect(() => {
