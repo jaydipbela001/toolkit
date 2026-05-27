@@ -1,5 +1,31 @@
 /* Global CSS - Modern Dark Theme with CSS Variables */
 
+/* ── Fix 1: Remove blue focus ring on mouse click (keep for keyboard nav) ── */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Keep a clean custom outline for keyboard users only */
+:focus-visible {
+  outline: 2px solid var(--primary-color, #6366f1);
+  outline-offset: 2px;
+}
+
+/* Remove default browser blue highlight on tap/click for all interactive elements */
+button, a, input, select, textarea, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove default outline on buttons/inputs globally — rely on :focus-visible above */
+button:focus, a:focus, input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--primary-color, #6366f1);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 :root {
   --primary-color: #6366f1;
   --primary-hover: #818cf8;

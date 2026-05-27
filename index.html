@@ -1,11 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/logo.png" />
-    <link rel="shortcut icon" href="/logo.png" />
+    <link rel="shortcut icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ── Anti-flash: apply bg before CSS/React loads ── -->
+    <style>
+      html, body, #root {
+        background-color: #0a0f1c;
+        color: #f8fafc;
+        margin: 0;
+      }
+      html[data-theme="light"],
+      html[data-theme="light"] body,
+      html[data-theme="light"] #root {
+        background-color: #fafafa;
+        color: #111827;
+      }
+    </style>
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', t);
+          document.documentElement.style.backgroundColor = t === 'light' ? '#fafafa' : '#0a0f1c';
+        } catch(e) {}
+      })();
+    </script>
 
     <!-- ── Primary SEO ── -->
     <title>DevToolsHub – Free Online Developer Tools | Age, EMI, Timezone, Password & Code Formatter</title>
@@ -31,6 +55,15 @@
     <meta name="twitter:description" content="Free browser-based tools: Age Calculator, EMI Calculator, Timezone Converter, Password Generator, Code Formatter & Diff Checker." />
     <meta name="twitter:image" content="https://devtoolshub-tools.vercel.app/og-image.svg" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2XTGF7VKB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-Z2XTGF7VKB');
+    </script>
     <!-- ── Structured Data (JSON-LD) ── -->
     <script type="application/ld+json">
     {

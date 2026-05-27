@@ -45,7 +45,7 @@
 }
 
 .navbar-logo-img {
-  height: 100px;
+  height: 93px;
   width: auto;
   display: block;
   /* Invert in light mode so the dark text stays readable */
@@ -171,6 +171,10 @@
     display: flex;
   }
 
+  .navbar {
+    height: 74px;
+  }
+
   .navbar-menu {
     position: fixed;
     top: 0;
@@ -215,6 +219,14 @@
   .navbar-logo {
     font-size: 1.25rem;
   }
+
+  /* .navbar{
+    height: 60px;
+  }
+
+  .navbar-logo-img {
+    height: 62px;
+  } */
 
   .logo-icon {
     font-size: 1.5rem;
