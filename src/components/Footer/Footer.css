@@ -26,6 +26,16 @@
   margin-bottom: 1rem;
 }
 
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+[data-theme="light"] .footer-logo-img {
+  filter: brightness(0.85) saturate(1.2);
+}
+
 .footer-logo-icon {
   font-size: 1.5rem;
 }

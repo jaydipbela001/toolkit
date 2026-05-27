@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <defs>
+    <linearGradient id="bolt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon background pill -->
+  <rect x="0" y="4" width="40" height="40" rx="10" fill="url(#bolt)" opacity="0.15"/>
+
+  <!-- Lightning bolt icon -->
+  <path d="M22 8 L14 26 L20 26 L18 40 L28 22 L22 22 L26 8 Z"
+        fill="url(#bolt)" stroke="none"/>
+
+  <!-- Brand name -->
+  <text x="48" y="22"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="15" font-weight="800" letter-spacing="-0.3"
+        fill="url(#text-grad)">Dev</text>
+  <text x="74" y="22"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="15" font-weight="800" letter-spacing="-0.3"
+        fill="#f8fafc">ToolsHub</text>
+
+  <!-- Tagline -->
+  <text x="48" y="38"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="9" font-weight="500" letter-spacing="0.5"
+        fill="#9ca3af">FREE DEVELOPER TOOLS</text>
+</svg>

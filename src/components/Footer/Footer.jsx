@@ -24,8 +24,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section">
             <div className="footer-logo">
-              <span className="footer-logo-icon">⚡</span>
-              <span className="footer-logo-text">DevToolsHub</span>
+              <img src="/logo.svg" alt="DevToolsHub" className="footer-logo-img" height="40" />
             </div>
             <p className="footer-description">
               Free, browser-based developer tools. No sign-up, no data stored — just fast,

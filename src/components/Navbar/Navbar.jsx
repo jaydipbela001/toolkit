@@ -48,8 +48,7 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
         <NavLink to="/" className="navbar-logo" onClick={closeMenu}>
-          <span className="logo-icon">⚡</span>
-          <span className="logo-text">DevToolsHub</span>
+          <img src="/logo.png" alt="DevToolsHub logo" className="navbar-logo-img" height="36" />
         </NavLink>
 
         <div className="navbar-right">

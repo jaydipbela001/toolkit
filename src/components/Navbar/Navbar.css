@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 70px;
+  height: 88px;
   display: flex;
   align-items: center;
   transition: all var(--transition);
@@ -42,6 +42,17 @@
   font-weight: 700;
   color: var(--text-color);
   text-decoration: none;
+}
+
+.navbar-logo-img {
+  height: 100px;
+  width: auto;
+  display: block;
+  /* Invert in light mode so the dark text stays readable */
+}
+
+[data-theme="light"] .navbar-logo-img {
+  filter: brightness(0.85) saturate(1.2);
 }
 
 .logo-icon {
