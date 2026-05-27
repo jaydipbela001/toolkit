@@ -127,6 +127,9 @@
   background: rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid var(--border-color);
   min-height: 46px;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .fmt-panel-title {
@@ -138,6 +141,9 @@
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .fmt-dot {
@@ -147,16 +153,28 @@
   flex-shrink: 0;
 }
 
-.fmt-dot-blue  { background: #6366f1; box-shadow: 0 0 6px rgba(99,102,241,0.6); }
-.fmt-dot-green { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.6); }
+.fmt-dot-blue {
+  background: #6366f1;
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.6);
+}
+
+.fmt-dot-green {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
 
 .fmt-line-count {
-  font-size: 0.75rem;
-  font-weight: 400;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--text-muted);
   background: var(--border-color);
-  padding: 1px 7px;
+  padding: 2px 8px;
   border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.4;
 }
 
 .fmt-panel-actions {
