@@ -350,3 +350,125 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ── Contact form extras ──────────────────────────────────────── */
+
+/* Name + Email side by side */
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Required asterisk */
+.contact-required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+/* Error border on inputs */
+.contact-input-error {
+  border-color: #ef4444 !important;
+}
+
+.contact-input-error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Field-level error text */
+.contact-field-error {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* Sending spinner */
+.contact-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: contactSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes contactSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Disabled state */
+.contact-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.contact-input:disabled,
+.contact-textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error banner */
+.contact-error-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  color: #f87171;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.contact-error-banner a {
+  color: #f87171;
+  font-weight: 600;
+}
+
+/* Success icon */
+.contact-status-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Reset / try-again button */
+.contact-reset-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 8px;
+  background: transparent;
+  color: #10b981;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.contact-reset-btn:hover {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.contact-reset-btn-err {
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+
+.contact-reset-btn-err:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 560px) {
+  .contact-row {
+    grid-template-columns: 1fr;
+  }
+}

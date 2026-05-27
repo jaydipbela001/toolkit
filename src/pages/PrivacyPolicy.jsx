@@ -21,7 +21,7 @@ const PrivacyPolicy = () => {
           <h2 className="policy-h2" id="intro-heading">1. Introduction</h2>
           <p className="policy-p">
             Welcome to <strong>DevToolsHub</strong> ("we", "our", or "us"). We operate the website
-            located at <a href="https://devtoolshub.com">devtoolshub.com</a> (the "Site"), which
+            located at <a href="https://devtoolshub-tools.vercel.app">devtoolshub-tools.vercel.app</a> (the "Site"), which
             provides free, browser-based developer and productivity tools including an Age Calculator,
             EMI Calculator, Timezone Converter, Password Generator, and Code Formatter &amp; Diff Checker.
           </p>
@@ -214,7 +214,7 @@ const PrivacyPolicy = () => {
           <p className="policy-p">
             If you are a parent or guardian and believe your child has provided us with personal
             information, please contact us at{' '}
-            <a href="mailto:contact@devtoolshub.com">contact@devtoolshub.com</a> so we can take
+            <a href="mailto:jaydipbela001@gmail.com">jaydipbela001@gmail.com</a> so we can take
             appropriate action.
           </p>
           <p className="policy-p">
@@ -249,7 +249,7 @@ const PrivacyPolicy = () => {
             <span className="info-icon">✉️</span>
             <span>
               Email:{' '}
-              <a href="mailto:contact@devtoolshub.com">contact@devtoolshub.com</a>
+              <a href="mailto:jaydipbela001@gmail.com">jaydipbela001@gmail.com</a>
             </span>
           </div>
           <p className="policy-p" style={{ marginTop: '1rem' }}>

@@ -245,7 +245,7 @@ const TermsOfService = () => {
             <span className="info-icon">✉️</span>
             <span>
               Email:{' '}
-              <a href="mailto:contact@devtoolshub.com">contact@devtoolshub.com</a>
+              <a href="mailto:jaydipbela001@gmail.com">jaydipbela001@gmail.com</a>
             </span>
           </div>
           <p className="policy-p" style={{ marginTop: '1rem' }}>

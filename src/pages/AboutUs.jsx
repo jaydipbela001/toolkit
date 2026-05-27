@@ -146,7 +146,7 @@ const AboutUs = () => {
             <span className="info-icon">✉️</span>
             <span>
               Reach us at:{' '}
-              <a href="mailto:contact@devtoolshub.com">contact@devtoolshub.com</a>
+              <a href="mailto:jaydipbela001@gmail.com">jaydipbela001@gmail.com</a>
             </span>
           </div>
         </section>

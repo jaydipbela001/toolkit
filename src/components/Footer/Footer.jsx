@@ -58,7 +58,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
+{/* 
           <div className="footer-section">
             <h4 className="footer-title">Connect</h4>
             <div className="footer-social">
@@ -73,7 +73,7 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="footer-bottom">
