@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 88px;
+  height: 64px;
   display: flex;
   align-items: center;
   transition: all var(--transition);
@@ -15,17 +15,16 @@
 }
 
 .navbar.scrolled {
-  background: rgba(10, 15, 28, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--shadow);
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(8, 12, 20, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 rgba(6, 182, 212, 0.1), var(--shadow);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.12);
 }
 
 [data-theme="light"] .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(240, 244, 248, 0.94);
+  border-bottom: 1px solid rgba(8, 145, 178, 0.15);
 }
 
 .navbar-container {
@@ -146,12 +145,12 @@
 
 .navbar-link:hover {
   color: var(--primary-color);
-  background-color: rgba(79, 70, 229, 0.1);
+  background-color: rgba(6, 182, 212, 0.08);
 }
 
 .navbar-link.active {
   color: var(--primary-color);
-  background-color: rgba(79, 70, 229, 0.15);
+  background-color: rgba(6, 182, 212, 0.12);
 }
 
 .navbar-overlay {
@@ -208,6 +207,7 @@
   .navbar-link.active {
     border-left: 3px solid var(--primary-color);
     border-radius: 0 8px 8px 0;
+    background-color: rgba(6, 182, 212, 0.08);
   }
 
   .navbar-overlay {

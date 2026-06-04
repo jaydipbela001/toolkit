@@ -6,19 +6,20 @@
     <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="shortcut icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-adsense-account" content="ca-pub-7388325244051566">
 
     <!-- ── Anti-flash: apply bg before CSS/React loads ── -->
     <style>
       html, body, #root {
-        background-color: #0a0f1c;
-        color: #f8fafc;
+        background-color: #080c14;
+        color: #e2e8f0;
         margin: 0;
       }
       html[data-theme="light"],
       html[data-theme="light"] body,
       html[data-theme="light"] #root {
-        background-color: #fafafa;
-        color: #111827;
+        background-color: #f0f4f8;
+        color: #0f172a;
       }
     </style>
     <script>
@@ -26,7 +27,7 @@
         try {
           var t = localStorage.getItem('theme') || 'dark';
           document.documentElement.setAttribute('data-theme', t);
-          document.documentElement.style.backgroundColor = t === 'light' ? '#fafafa' : '#0a0f1c';
+          document.documentElement.style.backgroundColor = t === 'light' ? '#f0f4f8' : '#080c14';
         } catch(e) {}
       })();
     </script>

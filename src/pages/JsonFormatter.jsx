@@ -388,6 +388,9 @@ const JsonFormatter = () => {
   const [diffResult, setDiffResult] = useState(null);
   const [diffIgnoreCase, setDiffIgnoreCase]   = useState(false);
   const [diffIgnoreSpace, setDiffIgnoreSpace] = useState(false);
+  const [copiedLeft,  setCopiedLeft]  = useState(false);
+  const [copiedRight, setCopiedRight] = useState(false);
+  const [copiedResult, setCopiedResult] = useState(false);
 
   const isDiff = activeTab === 'diff';
   const tab    = TABS.find((t) => t.id === activeTab);
@@ -501,6 +504,31 @@ const JsonFormatter = () => {
     setDiffLeft(diffRight);
     setDiffRight(diffLeft);
     setDiffResult(null);
+  };
+
+  const copyDiff = async (text, side) => {
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      if (side === 'left')   { setCopiedLeft(true);   setTimeout(() => setCopiedLeft(false),   2000); }
+      if (side === 'right')  { setCopiedRight(true);  setTimeout(() => setCopiedRight(false),  2000); }
+      if (side === 'result') { setCopiedResult(true); setTimeout(() => setCopiedResult(false), 2000); }
+    } catch { /* ignore */ }
+  };
+
+  // Build plain-text result for copying
+  const diffResultText = () => {
+    if (!diffResult) return '';
+    return diffResult.rows.map(row => {
+      const sign = row.type === 'add' || row.type === 'change'
+        ? '+ ' : row.type === 'remove' ? '- ' : '  ';
+      const left  = row.oldLine !== null ? `${sign}${row.oldLine}` : '';
+      const right = row.newLine !== null ? `${row.type === 'add' ? '+ ' : row.type === 'change' ? '+ ' : '  '}${row.newLine}` : '';
+      return row.type === 'equal'
+        ? `  ${row.oldLine}`
+        : [row.oldLine !== null ? `- ${row.oldLine}` : '', row.newLine !== null ? `+ ${row.newLine}` : '']
+            .filter(Boolean).join('\n');
+    }).join('\n');
   };
 
   const esc = s => (s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -630,6 +658,19 @@ const JsonFormatter = () => {
                 <span className="diff-char-count">
                   {diffLeft.length} chars &middot; {diffLeft ? diffLeft.split('\n').length : 0} lines
                 </span>
+                <button
+                  className={`diff-copy-btn ${copiedLeft ? 'diff-copy-ok' : ''}`}
+                  onClick={() => copyDiff(diffLeft, 'left')}
+                  disabled={!diffLeft}
+                  title="Copy original text"
+                >
+                  {copiedLeft ? (
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  ) : (
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                  )}
+                  {copiedLeft ? 'Copied!' : 'Copy'}
+                </button>
               </div>
               <textarea
                 className="fmt-textarea diff-textarea"
@@ -647,6 +688,19 @@ const JsonFormatter = () => {
                 <span className="diff-char-count">
                   {diffRight.length} chars &middot; {diffRight ? diffRight.split('\n').length : 0} lines
                 </span>
+                <button
+                  className={`diff-copy-btn ${copiedRight ? 'diff-copy-ok' : ''}`}
+                  onClick={() => copyDiff(diffRight, 'right')}
+                  disabled={!diffRight}
+                  title="Copy changed text"
+                >
+                  {copiedRight ? (
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  ) : (
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                  )}
+                  {copiedRight ? 'Copied!' : 'Copy'}
+                </button>
               </div>
               <textarea
                 className="fmt-textarea diff-textarea"
@@ -691,16 +745,29 @@ const JsonFormatter = () => {
                     </span>
                   )}
                 </div>
-                <div className="diff-result-cols">
-                  <div className="diff-col-label diff-col-label-remove">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                    Original
-                    <span className="diff-col-lines">{diffLeft.split('\n').length} lines</span>
-                  </div>
-                  <div className="diff-col-label diff-col-label-add">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                    Changed
-                    <span className="diff-col-lines">{diffRight.split('\n').length} lines</span>
+                <div className="diff-result-header-right">
+                  <button
+                    className={`diff-copy-result-btn ${copiedResult ? 'diff-copy-ok' : ''}`}
+                    onClick={() => copyDiff(diffResultText(), 'result')}
+                    title="Copy diff as unified text"
+                  >
+                    {copiedResult ? (
+                      <><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!</>
+                    ) : (
+                      <><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Diff</>
+                    )}
+                  </button>
+                  <div className="diff-result-cols">
+                    <div className="diff-col-label diff-col-label-remove">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                      Original
+                      <span className="diff-col-lines">{diffLeft.split('\n').length} lines</span>
+                    </div>
+                    <div className="diff-col-label diff-col-label-add">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                      Changed
+                      <span className="diff-col-lines">{diffRight.split('\n').length} lines</span>
+                    </div>
                   </div>
                 </div>
               </div>
