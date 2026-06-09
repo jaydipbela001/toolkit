@@ -860,9 +860,9 @@
 .sbs-text {
   flex: 1;
   padding: 3px 10px 3px 4px;
-  white-space: pre;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
   color: var(--text-color);
   min-width: 0;
 }
