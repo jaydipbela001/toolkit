@@ -118,63 +118,6 @@ const validateJSON = (raw) => {
   return 'Valid JSON ✓';
 };
 
-// Proper token-based XML formatter
-const formatXML = (raw) => {
-  // Validate first
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(raw.trim(), 'application/xml');
-  const parseErr = doc.querySelector('parsererror');
-  if (parseErr) throw new Error(parseErr.textContent.split('\n')[0]);
-
-  // Tokenise: split on every tag boundary, keeping tags
-  const tokens = raw.trim().match(/(<[^>]+>|[^<]+)/g) || [];
-  const tab = '  ';
-  let indent = 0;
-  let out = '';
-
-  tokens.forEach((token) => {
-    const t = token.trim();
-    if (!t) return;
-
-    if (/^<\?/.test(t)) {
-      // Processing instruction: <?xml ... ?>
-      out += tab.repeat(indent) + t + '\n';
-    } else if (/^<!--/.test(t)) {
-      // Comment
-      out += tab.repeat(indent) + t + '\n';
-    } else if (/^<\//.test(t)) {
-      // Closing tag — dedent first
-      indent = Math.max(0, indent - 1);
-      out += tab.repeat(indent) + t + '\n';
-    } else if (/\/>$/.test(t)) {
-      // Self-closing tag
-      out += tab.repeat(indent) + t + '\n';
-    } else if (/^<[^/!?]/.test(t)) {
-      // Opening tag
-      out += tab.repeat(indent) + t + '\n';
-      indent++;
-    } else {
-      // Text content — attach to current indent
-      const text = token.trim();
-      if (text) out += tab.repeat(indent) + text + '\n';
-    }
-  });
-
-  // Post-process: collapse <tag>\n  text\n</tag> → <tag>text</tag>
-  return out
-    .trim()
-    .replace(/(<[^/][^>]*>)\n(\s*)([^<\n]+)\n\s*(<\/[^>]+>)/g, '$1$3$4');
-};
-
-const minifyXML = (raw) => raw.replace(/>\s+</g, '><').replace(/\s+/g, ' ').trim();
-
-const validateXML = (raw) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(raw, 'application/xml');
-  const err = doc.querySelector('parsererror');
-  if (err) throw new Error(err.textContent.split('\n')[0]);
-  return 'Valid XML ✓';
-};
 
 // CSS formatter
 const formatCSS = (raw) => {
@@ -195,42 +138,6 @@ const validateCSS = (raw) => {
   return 'CSS structure looks valid ✓';
 };
 
-// HTML formatter
-const formatHTML = (raw) => {
-  let formatted = '';
-  let indent = 0;
-  const tab = '  ';
-  const voidTags = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
-  raw
-    .replace(/>\s*</g, '><')
-    .split(/(<[^>]+>)/)
-    .filter(Boolean)
-    .forEach((node) => {
-      const trimmed = node.trim();
-      if (!trimmed) return;
-      if (/^<\//.test(trimmed)) {
-        indent = Math.max(0, indent - 1);
-        formatted += tab.repeat(indent) + trimmed + '\n';
-      } else if (/^<[a-zA-Z]/.test(trimmed)) {
-        const tag = (trimmed.match(/^<([a-zA-Z0-9]+)/) || [])[1] || '';
-        formatted += tab.repeat(indent) + trimmed + '\n';
-        if (!voidTags.has(tag.toLowerCase()) && !/\/>$/.test(trimmed)) indent++;
-      } else {
-        formatted += tab.repeat(indent) + trimmed + '\n';
-      }
-    });
-  return formatted.trim();
-};
-
-const minifyHTML = (raw) => raw.replace(/>\s+</g, '><').replace(/\s+/g, ' ').trim();
-
-const validateHTML = (raw) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(raw, 'text/html');
-  const errs = doc.querySelectorAll('parsererror');
-  if (errs.length) throw new Error('HTML parse error detected');
-  return 'HTML structure looks valid ✓';
-};
 
 // SQL formatter (basic)
 const SQL_KEYWORDS = ['SELECT','FROM','WHERE','JOIN','LEFT JOIN','RIGHT JOIN','INNER JOIN','ON','AND','OR','NOT','IN','IS','NULL','ORDER BY','GROUP BY','HAVING','LIMIT','OFFSET','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','CREATE TABLE','DROP TABLE','ALTER TABLE','AS','DISTINCT','COUNT','SUM','AVG','MIN','MAX','UNION','ALL'];
@@ -273,15 +180,6 @@ const highlightJSON = (json) => {
     });
 };
 
-const highlightXML = (xml) => {
-  if (!xml) return '';
-  return xml
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/(&lt;\/?)([\w:-]+)/g, '$1<span class="hl-key">$2</span>')
-    .replace(/([\w:-]+)(=)(".*?")/g, '<span class="hl-attr">$1</span>$2<span class="hl-string">$3</span>');
-};
 
 const highlightCSS = (css) => {
   if (!css) return '';
@@ -293,7 +191,6 @@ const highlightCSS = (css) => {
     .replace(/:\s*([^;{}\n]+)/g, ': <span class="hl-string">$1</span>');
 };
 
-const highlightHTML = (html) => highlightXML(html);
 
 const highlightSQL = (sql) => {
   if (!sql) return '';
@@ -324,17 +221,6 @@ const TABS = [
     highlight: highlightJSON,
   },
   {
-    id: 'xml',
-    label: 'XML',
-    icon: '</>',
-    placeholder: 'Paste your XML here...\nExample: <root><item id="1">Hello</item></root>',
-    sample: `<catalog>\n  <book id="1">\n    <title>Learning XML</title>\n    <author>John Doe</author>\n    <price>29.99</price>\n  </book>\n  <book id="2">\n    <title>Advanced XML</title>\n    <author>Jane Smith</author>\n    <price>39.99</price>\n  </book>\n</catalog>`,
-    format: formatXML,
-    minify: minifyXML,
-    validate: validateXML,
-    highlight: highlightXML,
-  },
-  {
     id: 'css',
     label: 'CSS',
     icon: '#{}',
@@ -344,17 +230,6 @@ const TABS = [
     minify: minifyCSS,
     validate: validateCSS,
     highlight: highlightCSS,
-  },
-  {
-    id: 'html',
-    label: 'HTML',
-    icon: '<h>',
-    placeholder: 'Paste your HTML here...\nExample: <div><p>Hello</p></div>',
-    sample: `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Sample</title></head><body><div class="container"><h1>Hello World</h1><p>This is a sample HTML document.</p></div></body></html>`,
-    format: formatHTML,
-    minify: minifyHTML,
-    validate: validateHTML,
-    highlight: highlightHTML,
   },
   {
     id: 'sql',
