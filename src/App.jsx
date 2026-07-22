@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import Home from './pages/Home';
 import AgeCalculator from './pages/AgeCalculator';
 import EmiCalculator from './pages/EmiCalculator';
 import TimezoneConverter from './pages/TimezoneConverter';
@@ -31,7 +32,7 @@ const AppContent = () => {
       <Navbar />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<JsonFormatter />} />
+          <Route path="/" element={<Home />} />
           <Route path="/json-formatter" element={<JsonFormatter />} />
           <Route path="/age-calculator" element={<AgeCalculator />} />
           <Route path="/emi-calculator" element={<EmiCalculator />} />

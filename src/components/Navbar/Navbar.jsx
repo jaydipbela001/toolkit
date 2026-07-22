@@ -36,12 +36,12 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { path: '/', label: 'Formatter' },
+    { path: '/', label: 'Home' },
+    { path: '/json-formatter', label: 'Formatter' },
     { path: '/age-calculator', label: 'Age' },
     { path: '/emi-calculator', label: 'EMI' },
     { path: '/timezone-converter', label: 'Timezone' },
     { path: '/password-generator', label: 'Password' },
-    { path: '/about', label: 'About' },
   ];
 
   return (
